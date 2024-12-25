@@ -1,0 +1,85 @@
+* 
+{
+    padding: 0;
+    margin: 0;
+    font-family: 'Segoe UI', 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+
+#game-area, #new-game-area
+{
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.container 
+{
+    height: 34vh;
+}
+
+#game-area h1 
+{
+    margin-bottom: 3rem;
+}
+
+#result 
+{
+    margin: 2rem;
+}
+
+#player-score 
+{
+    font-size: 24px;
+    font-weight: bolder;
+    color: rgb(6, 73, 6);
+}
+
+#computer-score 
+{
+    font-size: 24px;
+    font-weight: bolder;
+    color: rgb(162, 12, 12);
+}
+
+#rock, #paper, #scissors 
+{
+    font-size: 5rem;
+    cursor: pointer;
+    background-color: rgb(144, 106, 72);
+    border: none;
+    margin: 3rem 2rem;
+    padding: 20px 10px;
+    border-radius: 8px;
+}
+
+#rock:hover, #paper:hover, #scissors:hover 
+{
+    background-color: rgb(155, 155, 155);
+}
+
+#play-again 
+{
+    font-size: 24px;
+    background-color: rgb(99, 227, 63);
+    margin-top: 2rem;
+    padding: 10px 30px;
+    cursor: pointer;
+}
+
+#play-again:hover 
+{
+    background-color: rgb(97, 219, 64);
+}
+
+#new-game-area p 
+{
+    font-size: 24px;
+}
+
+#new-game-area h1 
+{
+    font-size: 3rem;
+    margin-bottom: 2rem;
+}

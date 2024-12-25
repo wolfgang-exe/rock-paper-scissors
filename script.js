@@ -8,7 +8,7 @@ const computerChoiceElement = document.getElementById('computer-choice');
 const resultElement = document.getElementById('result');
 const gameArea = document.getElementById('game-area');
 const newGameArea = document.getElementById('new-game-area');
-const choice = ["Rock", "Paper", "Scissors"];
+const choice = ["🪨", "📄", "✄"];
 let playerScore = 0;
 let computerScore = 0;
 
@@ -25,13 +25,13 @@ function getComputerChoice()
 function getPlayerChoice()
 {
     rockButton.addEventListener('click', (e) => {
-        return playRound(e.target.innerText);
+        return playRound("🪨");
     })
     paperButton.addEventListener('click', (e) => {
-        return playRound(e.target.innerText);
+        return playRound("📄");
     })
     scissorsButton.addEventListener('click', (e) => {
-        return playRound(e.target.innerText);
+        return playRound("✄");
     })
 }
 
@@ -42,27 +42,27 @@ function playRound(playerChoice)
     let computerChoice = getComputerChoice();
 
     if (playerChoice === computerChoice) {
-        updateScore("Tie", playerChoice, computerChoice);
+        updateScore("", playerChoice, computerChoice);
     }
-    else if (playerChoice === "Rock" && computerChoice === "Scissors")
+    else if (playerChoice === "🪨" && computerChoice === "✄")
     {
         playerScore++;
         updateScore("Player Wins", playerChoice, computerChoice);
     }
-    else if (playerChoice === "Scissors" && computerChoice === "Paper")
+    else if (playerChoice === "✄" && computerChoice === "📄")
     {
         playerScore++;
         updateScore("Player Wins", playerChoice, computerChoice);
     }
 
-    else if (playerChoice === "Paper" && computerChoice === "Rock")
+    else if (playerChoice === "📄" && computerChoice === "🪨")
     {
         playerScore++;
         updateScore("Player Wins", playerChoice, computerChoice);
     }
     else 
     {
-        computerScore++
+        computerScore++;
         updateScore("Computer Wins", playerChoice, computerChoice);
     }
 
@@ -73,15 +73,28 @@ function playRound(playerChoice)
 // Update html page to show score and result
 function updateScore(result, playerChoice, computerChoice)
 {
-    playerChoiceElement.innerHTML = `Player Choice - ${playerChoice}`
-    computerChoiceElement.innerHTML = `Computer Choice - ${computerChoice}`
+    playerChoiceElement.innerHTML = `You Picked ${playerChoice}`
+    computerChoiceElement.innerHTML = `CPU Picked ${computerChoice}`
     resultElement.innerHTML = result;
-
-    if (result === "Computer Wins" || result === "Player Wins")
+    
+    if (result === "Computer Wins")
     {
         playerScoreElement.innerHTML = `Player Score - ${playerScore}`;
-        computerScoreElement.innerHTML = `Computer Score - ${computerScore}`;
+        computerScoreElement.innerHTML = `CPU Score - ${computerScore}`;
+        document.body.style.backgroundColor = '#ffb9ca';
     }
+    else if (result === "Player Wins")
+    {
+        playerScoreElement.innerHTML = `Player Score - ${playerScore}`;
+        computerScoreElement.innerHTML = `CPU Score - ${computerScore}`;
+        document.body.style.backgroundColor = '#a4fe9b';
+    }
+    else 
+    {
+        document.body.style.backgroundColor = 'white';
+    }
+
+
 }
 
 // First score to five wins
@@ -106,7 +119,7 @@ function declareWinner()
     newGameArea.innerHTML = `
         <h1>${winner} Wins!</h1>
         <p>Player Score - ${playerScore}</p>
-        <p>Computer Score - ${computerScore}</p>
+        <p>CPU Score - ${computerScore}</p>
         <button id="play-again"> Play Again? </button>
     `;
     
@@ -122,7 +135,7 @@ function declareWinner()
         newGameArea.innerHTML = ``;
 
         // reset and show game area
-        gameArea.style.display = 'block'
+        gameArea.style.display = 'flex';
         resetGameArea();
     })
 }
@@ -130,9 +143,10 @@ function declareWinner()
 // Set game area to inital state
 function resetGameArea()
 {
-    playerChoiceElement.innerHTML = 'Player Choice';
-    computerChoiceElement.innerHTML = 'Computer Choice';
-    resultElement.innerHTML = 'Rock, Paper, Scissors';
+    playerChoiceElement.innerHTML = '';
+    computerChoiceElement.innerHTML = '';
+    resultElement.innerHTML = '';
     playerScoreElement.innerHTML = 'Player Score - 0';
-    computerScoreElement.innerHTML = 'Computer Score - 0';
+    computerScoreElement.innerHTML = 'CPU Score - 0';
+    document.body.style.backgroundColor = 'white';
 }
